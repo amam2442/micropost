@@ -5,13 +5,15 @@ class LikesController < ApplicationController
     post = Micropost.find(params[:micropost_id])
     current_user.favorite(post)
     flash[:success] = 'お気に入り登録できました。'
-    redirect_to root_url
+    redirect_to request.referer
+
   end
   
   def destroy
     post = Micropost.find(params[:micropost_id])
     current_user.unfavorite(post)
     flash[:success] = '解除しました。'
-    redirect_to root_url
+    redirect_to request.referer
+
   end
 end
